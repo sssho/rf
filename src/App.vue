@@ -1,26 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <FileLink />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FileLink from "./components/FileLink.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    FileLink
   }
-}
+};
 </script>
 
 <style>
+/* * {
+    background-color: white;;
+} */
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  background-color: white;;
+  margin-top: 40px;
+  padding-top: 15px;
 }
 </style>

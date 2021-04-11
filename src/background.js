@@ -3,7 +3,19 @@
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
+
+import { execFile } from 'child_process'
+const { ipcMain } = require('electron')
+const path = require("path");
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
+
+// Return history file path to renderer process
+ipcMain.on('sync-get-history-filepath', (event, arg) => {
+  event.returnValue = path.join(
+    app.getPath("home"), ".cache", "todo", "history.json"
+  )
+})
 
 // https://www.electronjs.org/docs/api/app#apprequestsingleinstancelock
 const gotTheLock = app.requestSingleInstanceLock();
@@ -59,6 +71,8 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+const child = execFile(path.join(__static, 'backend', 'recentf.exe'))
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
